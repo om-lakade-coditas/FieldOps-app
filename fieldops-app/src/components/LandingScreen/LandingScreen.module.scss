@@ -1,0 +1,14 @@
+@use "../../../styles/mixin" as *;
+
+.LandingScreen {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.Input {
+    padding: 0.5rem 1rem;
+}
+
+.LoginContainer {
+    @include FlexBox
+}
