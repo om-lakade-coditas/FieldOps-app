@@ -1,0 +1,11 @@
+@use "../../../styles/variables" as *;
+
+.Header {
+    padding: 1rem;
+    background-color: $primary-color;
+    color: white;
+}
+
+.CompanyName {
+    font-size: 1.2rem;
+}
