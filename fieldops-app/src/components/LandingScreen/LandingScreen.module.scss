@@ -11,40 +11,9 @@
     background-size: cover;
 }
 
-.Input {
-    padding: 0.5rem 1rem;
-    min-width: 50%;
-}
 
 .LoginContainer {
     @include FlexBox;
     min-width: 50%;
 }
 
-.LoginTitle {
-    font-size: 2rem;
-}
-
-.LoginBox {
-    @include FlexBox;
-    flex-direction: column;
-    gap: 1rem;
-    min-width: 70%;
-}
-
-.LoginForm {
-    @include FlexBox;
-    flex-direction: column;
-    gap: 1rem;
-    min-width: 100%;
-}
-
-.BtnContainer {
-    @include FlexBox;
-
-}
-
-.LoginBtn {
-    padding: 0.3rem 1.5rem;
-    font-size: 1rem;
-}
