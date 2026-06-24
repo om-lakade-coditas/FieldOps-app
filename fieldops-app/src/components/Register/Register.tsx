@@ -1,19 +1,37 @@
 import { useForm } from "react-hook-form"
 import { PrimaryBtn } from "../Button/Button"
 import styles from "./Register.module.scss"
-import type { RegisterData } from "./Register.types";
+import type { actionType, PassValidation, RegisterData } from "./Register.types";
 import { useRegisterMutation } from "../../redux/slices/authApiSlice";
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { loginRegister } from "../../redux/slices/loginRegisterSlice";
+import { useReducer } from "react";
 
 
+const initialState = {
+    isPassLengthValid: false,
+    doesIncludeUppercase: false,
+}
+
+const reducer = (data: PassValidation , action:actionType) => {
+    if(action.type=== "passLength"){
+        return {...data, isPassLengthValid: true}
+    }
+    else if(action.type==="doesIncludeUppercase"){
+        return {...data, doesIncludeUppercase:true}
+    }
+    else {
+        return data
+    }
+}
 
 const Register = () => {
     
-    const { handleSubmit, register } = useForm<RegisterData>();
+    const { handleSubmit, register, formState } = useForm<RegisterData>();
     const [ registerService ] = useRegisterMutation();
     const dispatch = useDispatch();
+    const [state, dispatchFn] = useReducer(reducer, initialState)
 
     const handleRegistration = async(data: RegisterData) => {
        try {
@@ -31,6 +49,10 @@ const Register = () => {
        }
     }
 
+    const checkValidation = () => {
+        console.log(formState)
+    }
+
   return (
     <div className={styles.RegisterBox}>
         <h2>Register</h2>
@@ -42,17 +64,23 @@ const Register = () => {
                 <input className={styles.Input} type="email" {...register("email", {required:true})} id="" placeholder="You@example.com"/>
             </div>
             <div className={styles.PasswordInput}>
-                <input className={styles.Input} type="password" {...register("password", {required:true,minLength:8})} id="" placeholder="Password here..."/>
+                <input className={styles.Input} type="password"  {...register("password", {required:true,minLength:{value:8, message:"Should include 8 characters"}})} onChange={()=>{
+                    checkValidation()
+                }} id="" placeholder="Password here..."/>
             </div>
-            <div className={styles.PasswordInput}>
-                <h5 className={styles.Redirect} onClick={()=> {
+            <div className={styles.PasswordValidation}>
+                <h5 className={state.isPassLengthValid ? styles.Valid : styles.Invalid}>Password Maxlength : 8 characters</h5>
+                <h5 className={state.doesIncludeUppercase ? styles.Valid : styles.Invalid}>Password Maxlength : 8 characters</h5>
+            </div>
+            <div className={styles.RedirectBox}>
+                <h4 className={styles.Redirect} onClick={()=> {
                     dispatch(loginRegister.actions.setLoggedInTrue())
-                }}>Already Registered? Login here!</h5>
+                }}>Already Registered? Login here!</h4>
             </div>
             <div className={styles.BtnContainer}>
                 <PrimaryBtn type="submit" className={styles.RegisterBtn}>Register</PrimaryBtn>
             </div>
-            <ToastContainer position="top-center" />
+            <ToastContainer position="top-center"/>
         </form>
     </div>
   )
