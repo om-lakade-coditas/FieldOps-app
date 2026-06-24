@@ -5,11 +5,4 @@ export interface RegisterData {
 }
 
 
-export interface PassValidation {
-    isPassLengthValid: boolean;
-    doesIncludeUppercase: boolean;
-}
 
-export interface actionType {
-    type: string;
-}

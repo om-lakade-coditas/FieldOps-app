@@ -33,10 +33,10 @@ const Login = () => {
         <h2 className={styles.LoginTitle}>Login</h2>
         <form onSubmit={handleSubmit(handleLogin)} className={styles.LoginForm}>
             <div className={styles.EmailInput}>
-                <input className={styles.Input} type="email" {...register("email", { required:true })} placeholder="You@example.com" />
+                <input className={styles.Input} type="email" {...register("email", { required: {value: true, message:"Please Enter Email"} })} placeholder="You@example.com" />
             </div>
             <div className={styles.PasswordInput}>
-                <input className={styles.Input} type="password" {...register("password", { required:true })} placeholder="Password Here..."/>
+                <input className={styles.Input} type="password" {...register("password", { required:{value:true, message:"Please Enter Password"} })} placeholder="Password Here..."/>
             </div>
             <div className={styles.RedirectBox}>
                 <h5 onClick={()=>{
