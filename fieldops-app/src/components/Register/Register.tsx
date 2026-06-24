@@ -7,6 +7,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { loginRegister } from "../../redux/slices/loginRegisterSlice";
 import { useReducer } from "react";
+import PasswordInfo from "../PasswordInfo/PasswordInfo";
+import { useTypedSelector } from "../../redux/store/store";
 
 
 const initialState = {
@@ -28,10 +30,12 @@ const reducer = (data: PassValidation , action:actionType) => {
 
 const Register = () => {
     
-    const { handleSubmit, register, formState } = useForm<RegisterData>();
+    const { handleSubmit, register, formState, getFieldState } = useForm<RegisterData>();
     const [ registerService ] = useRegisterMutation();
     const dispatch = useDispatch();
     const [state, dispatchFn] = useReducer(reducer, initialState)
+    const showPasswordValidationModal = useTypedSelector((state)=> state.passwordInfo.isModalOpen);
+    
 
     const handleRegistration = async(data: RegisterData) => {
        try {
@@ -50,7 +54,7 @@ const Register = () => {
     }
 
     const checkValidation = () => {
-        console.log(formState)
+        console.log(getFieldState("password"))
     }
 
   return (
@@ -58,19 +62,27 @@ const Register = () => {
         <h2>Register</h2>
         <form onSubmit={handleSubmit(handleRegistration)} className={styles.RegisterForm}>
             <div className={styles.NameInput}>
-                <input className={styles.Input} type="text" {...register("name", {required:true})} id="" placeholder="John Doe"/>
+                <input className={styles.Input} type="text" {...register("name", {required:true, minLength:{value:2, message:"Please Enter more than 1 character"}})} id="" placeholder="John Doe"/>
+                {showPasswordValidationModal && formState.errors.name?.message ? 
+                 <div className={styles.ValidationFloat}>
+                    <PasswordInfo>{formState.errors.name.message}</PasswordInfo>
+                </div> : ""}
             </div>
             <div className={styles.EmailInput}>
-                <input className={styles.Input} type="email" {...register("email", {required:true})} id="" placeholder="You@example.com"/>
+                <input className={styles.Input} type="email" {...register("email", { required : { value:true, message:"Please Enter Valid Email"} })} id="" placeholder="You@example.com"/>
+                {showPasswordValidationModal && formState.errors.email?.message ? 
+                 <div className={styles.ValidationFloat}>
+                    <PasswordInfo>{formState.errors.email.message}</PasswordInfo>
+                </div> : ""}
             </div>
             <div className={styles.PasswordInput}>
                 <input className={styles.Input} type="password"  {...register("password", {required:true,minLength:{value:8, message:"Should include 8 characters"}})} onChange={()=>{
                     checkValidation()
                 }} id="" placeholder="Password here..."/>
-            </div>
-            <div className={styles.PasswordValidation}>
-                <h5 className={state.isPassLengthValid ? styles.Valid : styles.Invalid}>Password Maxlength : 8 characters</h5>
-                <h5 className={state.doesIncludeUppercase ? styles.Valid : styles.Invalid}>Password Maxlength : 8 characters</h5>
+                {showPasswordValidationModal && formState.errors.password?.message ? 
+                 <div className={styles.ValidationFloat}>
+                    <PasswordInfo>{formState.errors.password.message}</PasswordInfo>
+                </div> : ""}
             </div>
             <div className={styles.RedirectBox}>
                 <h4 className={styles.Redirect} onClick={()=> {

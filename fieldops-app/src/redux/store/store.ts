@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "../slices/apiSlice";
 import loginRegisterReducer from "../slices/loginRegisterSlice";
 import { useDispatch, useSelector, type TypedUseSelectorHook } from "react-redux";
+import passwordInfoReducer from "../slices/passwordInfoSlice";
 
 export const store = configureStore({
     reducer: {
         [apiSlice.reducerPath]: apiSlice.reducer,
-        loginRegister : loginRegisterReducer
+        loginRegister : loginRegisterReducer,
+        passwordInfo : passwordInfoReducer,
     },
     middleware: (getMiddleware) => 
         getMiddleware().concat(apiSlice.middleware),
