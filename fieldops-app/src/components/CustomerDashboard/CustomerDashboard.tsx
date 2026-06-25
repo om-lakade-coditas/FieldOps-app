@@ -11,8 +11,8 @@ import CreateJobs from "../CreateJobs/CreateJobs";
 const CustomerDashboard = () => {
 
   const token = useTypedSelector((state)=> state.userInfo.access_token)
-
-  const { data: jobs = [], refetch } = useGetJobsQuery("");
+  console.log(token)
+  const { data: jobs = [], refetch } = useGetJobsQuery(token);
 
 
   useEffect(() => {

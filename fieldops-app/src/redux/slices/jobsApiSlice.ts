@@ -2,12 +2,12 @@ import { apiSlice } from "./apiSlice";
 
 export const jobsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getJobs: builder.query({
-            query: () => ({
+        getJobs: builder.query<[], string>({
+            query: (token) => ({
                 url: "/jobs",
                 method: "GET",
                 headers: {
-                            'Authorization': `Bearer `  
+                            'Authorization': `Bearer ${token}`  
                         }
             })
         }),

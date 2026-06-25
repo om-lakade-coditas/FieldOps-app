@@ -10,9 +10,9 @@ export const authUserSlice = createSlice({
     name:"authUser",
     initialState,
     reducers:{
-        setRole: (state, data) => {
+        setRole: (state, { payload }) => {
             return {
-                ...state, user_role : data.payload.role
+                ...state, user_role : payload.role
             }
         },
         setToken: (state, data) => {

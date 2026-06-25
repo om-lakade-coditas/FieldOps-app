@@ -30,7 +30,8 @@ const Login = () => {
             if(response.accessToken){
                 toast.success("Login success!")
                 const { role } = jwtDecode(response.accessToken) as JwtPayload;
-                dispatch(authUser.actions.setRole({role:role}))
+                dispatch(authUser.actions.setRole({payload:{role}}))
+                console.log("Role set")
                 switch(role){
                     case "CUSTOMER":
                         navigate("/Dashboard/")
