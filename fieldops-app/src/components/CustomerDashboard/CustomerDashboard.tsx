@@ -12,14 +12,14 @@ const CustomerDashboard = () => {
 
   const token = useTypedSelector((state)=> state.userInfo.access_token)
 
-  // const { data: jobs = [], refetch } = useGetJobsQuery(token);
+  const { data: jobs = [], refetch } = useGetJobsQuery("");
 
 
-  // useEffect(() => {
-  //   if (refetch) refetch()
-  // }, [refetch])
+  useEffect(() => {
+    if (refetch) refetch()
+  }, [refetch])
   
-  // console.log(jobs)
+  console.log(jobs)
 
   return (
     <div className={styles.CustomerDashboard}>
@@ -33,7 +33,11 @@ const CustomerDashboard = () => {
       </div>
       <CreateJobs/>
       <div className={styles.ProblemsBox}>
-        <h3>No issues uploaded yet!</h3>
+        <div>
+          {/* {jobs.map((job)=>{
+
+          })} */}
+        </div>
       </div>
     </div>
   )
