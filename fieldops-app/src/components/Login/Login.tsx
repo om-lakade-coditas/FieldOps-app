@@ -20,7 +20,9 @@ const Login = () => {
     const { register, handleSubmit, formState } = useForm<UserDetails>();
     const dispatch = useAppDispatch();
     const showValidationModal = useTypedSelector((state)=> state.ValidationInfo.isModalOpen);
-    
+    const userRole = useTypedSelector((state) => state.userInfo.user_role)
+
+
     const handleLogin = async(data: UserDetails) => {
         try {
             const response = await loginService(data).unwrap();
@@ -28,24 +30,17 @@ const Login = () => {
             if(response.accessToken){
                 toast.success("Login success!")
                 const { role } = jwtDecode(response.accessToken) as JwtPayload;
-                if(role==="CUSTOMER"){
-                    dispatch(authUser.actions.setRoleAsCustomer())
-                    const id = setTimeout(()=>{
+                dispatch(authUser.actions.setRole({role:role}))
+                switch(role){
+                    case "CUSTOMER":
                         navigate("/Dashboard/")
-                    },3000)
-                    clearTimeout(id)
-                }
-                else if(role==="TECHNICIAN"){
-                    dispatch(authUser.actions.setRoleAsTechnician())
-                    setTimeout(()=>{
-                        navigate("/Dashboard/Technician")
-                    },3000)
-                }
-                else if(role==="DISPATCHER"){
-                    dispatch(authUser.actions.setRoleAsDispatcher())
-                    setTimeout(()=>{
+                        break
+                        case "DISPATCHER":
                         navigate("/Dashboard/Dispatcher")
-                    },3000)
+                        break
+                        case "TECHNICIAN":
+                        navigate("/Dashboard/Technician")
+                        break
                 }
             }
         } catch (error:any) {

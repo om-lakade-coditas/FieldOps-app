@@ -2,22 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    user_role: "" 
+    user_role: "",
+    access_token: ""
 }
 
 export const authUserSlice = createSlice({
     name:"authUser",
     initialState,
     reducers:{
-        setRoleAsTechnician: (state) => {
-            state.user_role = "TECHNICIAN"
+        setRole: (state, data) => {
+            return {
+                ...state, user_role : data.payload.role
+            }
         },
-        setRoleAsDispatcher: (state) => {
-            state.user_role = "DISPATCHER"
-        },
-        setRoleAsCustomer: (state) => {
-            state.user_role = "CUSTOMER"
-        },
+        setToken: (state, data) => {
+            return {
+                ...state, access_token: data.payload.token
+            }
+        }
     }
 });
 

@@ -3,6 +3,6 @@ export interface UserDetails {
     password : string;
 }
 
-export interface JwtPayload {
+export interface JwtPayload  {
     role: string;
 }
