@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
 import { authUser } from "../../redux/slices/authUserSlice";
+import ValidationInfo from "../ValidationInfo/ValidationInfo";
 
 
 
@@ -16,9 +17,10 @@ const Login = () => {
 
     const [ loginService ] = useLoginMutation();
     const navigate = useNavigate();
-    const { register, handleSubmit } = useForm<UserDetails>();
+    const { register, handleSubmit, formState } = useForm<UserDetails>();
     const dispatch = useAppDispatch();
-
+    const showValidationModal = useTypedSelector((state)=> state.ValidationInfo.isModalOpen);
+    
     const handleLogin = async(data: UserDetails) => {
         try {
             const response = await loginService(data).unwrap();
@@ -28,9 +30,10 @@ const Login = () => {
                 const { role } = jwtDecode(response.accessToken) as JwtPayload;
                 if(role==="CUSTOMER"){
                     dispatch(authUser.actions.setRoleAsCustomer())
-                    setTimeout(()=>{
+                    const id = setTimeout(()=>{
                         navigate("/Dashboard/")
                     },3000)
+                    clearTimeout(id)
                 }
                 else if(role==="TECHNICIAN"){
                     dispatch(authUser.actions.setRoleAsTechnician())
@@ -57,9 +60,17 @@ const Login = () => {
         <form onSubmit={handleSubmit(handleLogin)} className={styles.LoginForm}>
             <div className={styles.EmailInput}>
                 <input className={styles.Input} type="email" {...register("email", { required: {value: true, message:"Please Enter Email"} })} placeholder="You@example.com" />
+                {showValidationModal && formState.errors.email?.message ? 
+                    <div className={styles.ValidationFloat}>
+                    <ValidationInfo>{formState.errors.email.message}</ValidationInfo>
+                </div> : ""}
             </div>
             <div className={styles.PasswordInput}>
                 <input className={styles.Input} type="password" {...register("password", { required:{value:true, message:"Please Enter Password"} })} placeholder="Password Here..."/>
+                {showValidationModal && formState.errors.password?.message ? 
+                    <div className={styles.ValidationFloat}>
+                    <ValidationInfo>{formState.errors.password.message}</ValidationInfo>
+                </div> : ""}
             </div>
             <div className={styles.RedirectBox}>
                 <h5 onClick={()=>{

@@ -1,7 +1,5 @@
 import { apiSlice } from "./apiSlice";
 
-
-const API = import.meta.env.VITE_BASE_URL;
 export const authApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation({
@@ -13,7 +11,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         }),
         register: builder.mutation({
             query: (userData) => ({
-                url: `${API}/auth/register`,
+                url: `/auth/register`,
                 method: "POST",
                 body: userData
             })

@@ -9,9 +9,7 @@ import { loginRegister } from "../../redux/slices/loginRegisterSlice";
 
 import ValidationInfo from "../ValidationInfo/ValidationInfo";
 import { useTypedSelector } from "../../redux/store/store";
-import ValidationInfoReducer, { ValidationInfoService } from "../../redux/slices/ValidationInfoSlice";
-
-
+import  { ValidationInfoService } from "../../redux/slices/ValidationInfoSlice";
 
 
 

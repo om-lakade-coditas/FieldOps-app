@@ -3,3 +3,9 @@
 .DispatcherDashboard {
     @include FlexBox;
 }
+
+
+.DispatcherDashboard img {
+    height: 100px;
+    width: 100px;
+}
