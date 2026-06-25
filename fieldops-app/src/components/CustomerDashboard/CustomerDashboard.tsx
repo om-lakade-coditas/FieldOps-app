@@ -37,7 +37,6 @@ const CustomerDashboard = () => {
     if (refetch) refetch()
   }, [refetch])
   
-  console.log(jobs)
   return (
     <div className={styles.CustomerDashboard}>
       <div className={styles.Header}>

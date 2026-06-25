@@ -3,20 +3,22 @@
 
 .CustomerDashboard {
     display: grid;
-    grid-template-rows: auto 1fr;
+    min-height: 100%;
+    grid-template-rows: 1fr 2fr;
 }
 
 .ProblemsBoxContainer h2{
     text-align: center;
+    @include FlexBox;
 }
 
 .ProblemsBox {
-    border: thin solid transparent;
-    border-top-color: #000;
     padding: 1rem;
     @include FlexBox;
     justify-content: start;
     flex-direction: column;
+    background-color: gray;
+    border-radius: 10px;
 }
 
 .CreateEnquiryBtn {

@@ -2,14 +2,19 @@ import { createBrowserRouter } from "react-router";
 import Layout from "../components/Layout/Layout";
 import LandingScreen from "../components/LandingScreen/LandingScreen";
 import CustomerDashboard from "../components/CustomerDashboard/CustomerDashboard";
-import type React from "react";
 import TechnicianDashboard from "../components/TechnicianDashboard/TechnicianDashboard";
 import DispatcherDashboard from "../components/DispatcherDashboard/DispatcherDashboard";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import type { ComponentType } from "react";
+import guards from "./guards";
+export type Predicate = () => Boolean;
 
 
-const canAccess = (Component: React.Component, Predicate: ()=> boolean, to: React.Component) => {
-
+const canAccess = (component: ComponentType, guards: Predicate[], to: ComponentType = Dashboard ) => {    
+    if(!guards.every(guard => guard())){
+        return to;
+    }
+    return component;
 }
 
 export const router = createBrowserRouter([
@@ -23,7 +28,7 @@ export const router = createBrowserRouter([
                 index: true
             },
             {
-                Component: Dashboard,
+                Component: canAccess(Dashboard, [guards.isLoggedIn]),
                 path: "/dashboard",
                 children: [
                 {
