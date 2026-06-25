@@ -29,19 +29,19 @@ const Login = () => {
                 if(role==="CUSTOMER"){
                     dispatch(authUser.actions.setRoleAsCustomer())
                     setTimeout(()=>{
-                        navigate("/Home")
+                        navigate("/Dashboard/Home")
                     },3000)
                 }
                 else if(role==="TECHNICIAN"){
                     dispatch(authUser.actions.setRoleAsTechnician())
                     setTimeout(()=>{
-                        navigate("/Technician")
+                        navigate("/Dashboard/Technician")
                     },3000)
                 }
                 else if(role==="DISPATCHER"){
                     dispatch(authUser.actions.setRoleAsDispatcher())
                     setTimeout(()=>{
-                        navigate("/Dispatcher")
+                        navigate("/Dashboard/Dispatcher")
                     },3000)
                 }
             }

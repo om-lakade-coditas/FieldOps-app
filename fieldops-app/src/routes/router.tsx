@@ -5,6 +5,7 @@ import CustomerDashboard from "../components/CustomerDashboard/CustomerDashboard
 import type React from "react";
 import TechnicianDashboard from "../pages/TechnicianDashboard/TechnicianDashboard";
 import DispatcherDashboard from "../pages/DispatcherDashboard/DispatcherDashboard";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 
 const canAccess = (Component: React.Component, Predicate: ()=> boolean, to: React.Component) => {
@@ -22,16 +23,22 @@ export const router = createBrowserRouter([
                 index: true
             },
             {
-                Component: CustomerDashboard,
-                path: "/Home"
-            },
-            {
-                Component: TechnicianDashboard,
-                path: "/Technician"
-            },
-            {
-                Component: DispatcherDashboard,
-                path: "/Dispatcher"
+                Component: Dashboard,
+                path: "/Dashboard",
+                children: [
+                {
+                    Component: CustomerDashboard,
+                    path: "Home"
+                },
+                {
+                    Component: TechnicianDashboard,
+                    path: "Technician"
+                },
+                {
+                    Component: DispatcherDashboard,
+                    path: "Dispatcher"
+                }
+            ]
             }
         ]
     }

@@ -3,7 +3,7 @@ import styles from "./DispatcherDashboard.module.scss";
 const DispatcherDashboard = () => {
   return (
     <div className={styles.DispatcherDashboard}>
-        Technician Dashboard
+        Dispatcher Dashboard
     </div>
   )
 }
