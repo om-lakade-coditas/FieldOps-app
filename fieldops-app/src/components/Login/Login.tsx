@@ -20,18 +20,17 @@ const Login = () => {
     const { register, handleSubmit, formState } = useForm<UserDetails>();
     const dispatch = useAppDispatch();
     const showValidationModal = useTypedSelector((state)=> state.ValidationInfo.isModalOpen);
-    const userRole = useTypedSelector((state) => state.userInfo.user_role)
 
 
     const handleLogin = async(data: UserDetails) => {
         try {
             const response = await loginService(data).unwrap();
-            console.log(response)
-            if(response.accessToken){
+            const { accessToken: token } = response; 
+            if(token){
                 toast.success("Login success!")
                 const { role } = jwtDecode(response.accessToken) as JwtPayload;
                 dispatch(authUser.actions.setRole({payload:{role}}))
-                console.log("Role set")
+                localStorage.setItem("accessToken", JSON.stringify(token));
                 switch(role){
                     case "CUSTOMER":
                         navigate("/Dashboard/")

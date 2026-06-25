@@ -10,16 +10,13 @@ import CreateJobs from "../CreateJobs/CreateJobs";
 
 const CustomerDashboard = () => {
 
-  const token = useTypedSelector((state)=> state.userInfo.access_token)
-  console.log(token)
-  const { data: jobs = [], refetch } = useGetJobsQuery(token);
+  const { data: jobs = [], refetch } = useGetJobsQuery(JSON.parse(localStorage.getItem("accessToken") as string));
 
 
   useEffect(() => {
     if (refetch) refetch()
   }, [refetch])
   
-  console.log(jobs)
 
   return (
     <div className={styles.CustomerDashboard}>
@@ -27,16 +24,17 @@ const CustomerDashboard = () => {
         <Searchbar/>
         <PrimaryBtn className={styles.CreateEnquiryBtn}>Create an Enquiry</PrimaryBtn>
         <Filter>
-          <Options>All</Options>
-          <Options>opt 2</Options>
+          <Options>Low</Options>
+          <Options>Medium</Options>
+          <Options>High</Options>
         </Filter>
       </div>
       <CreateJobs/>
       <div className={styles.ProblemsBox}>
         <div>
-          {/* {jobs.map((job)=>{
-
-          })} */}
+          {jobs?.map((job:{description:string },idx: number)=>{
+            return <li key={idx}>{job.description}</li>
+          })}
         </div>
       </div>
     </div>

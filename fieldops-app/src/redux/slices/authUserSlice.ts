@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     user_role: "",
-    access_token: ""
+    access_token: JSON.parse(localStorage.getItem("accessToken") as string) 
 }
 
 export const authUserSlice = createSlice({
@@ -12,12 +12,12 @@ export const authUserSlice = createSlice({
     reducers:{
         setRole: (state, { payload }) => {
             return {
-                ...state, user_role : payload.role
+                ...state, user_role : payload.payload.role
             }
         },
-        setToken: (state, data) => {
+        setToken: (state, { payload }) => {
             return {
-                ...state, access_token: data.payload.token
+                ...state, access_token: payload.payload.token
             }
         }
     }
