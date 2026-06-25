@@ -1,0 +1,30 @@
+@use "../../../styles/mixin" as *;
+
+.CreateJobs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(128, 128, 128, 0.493);
+    @include FlexBox;
+}
+
+.CreateJobsForm {
+    @include FlexBox;   
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border: thin solid;
+}
+
+.JobsInput {
+    padding: 0.5rem;
+    min-width: 100%;
+}
+
+.BtnContainer {
+    @include FlexBox;
+    gap: 1rem;
+}

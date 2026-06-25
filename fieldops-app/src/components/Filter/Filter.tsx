@@ -4,7 +4,7 @@ import type { FilterProps } from "./Filter.types";
 const Filter = ({ children }: FilterProps) => {
   return (
     <div className={styles.Filter}>
-        <select name="" id="">
+        <select className={styles.FilterSelect} name="" id="">
             
             {children}
         </select>
@@ -13,4 +13,4 @@ const Filter = ({ children }: FilterProps) => {
   )
 }
 
-export default Filter
+export default Filter;

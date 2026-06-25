@@ -1,23 +1,45 @@
 @use "../../../styles/mixin" as *;
+@use "../../../styles/variables" as *;
 
 .CustomerDashboard {
-    @include FlexBox;
-    justify-content: space-evenly;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.ProblemsBoxContainer h2{
+    text-align: center;
 }
 
 .ProblemsBox {
-    background-color: burlywood;
-
+    border: thin solid transparent;
+    border-top-color: #000;
+    padding: 1rem;
+    @include FlexBox;
+    justify-content: start;
+    flex-direction: column;
 }
-
 
 .CreateEnquiryBtn {
     padding: 0.7rem 1.5rem;
+}
+
+.Job {
+    background-color: white;
+    min-width: 100%;
+    padding: 1rem;
+    border: thin solid gray;
+    cursor: pointer;
+    list-style: none;
+    border-radius: $border-radius;
+    &:hover {
+        border: none;
+        box-shadow: 2px 2px 15px rgba(128, 128, 128, 0.781);
+    }
 }
 
 .Header {
     @include FlexBox;
     justify-content: space-evenly;
     min-width: 100%;
+    padding: 1rem;
 }

@@ -1,35 +1,40 @@
 import { useForm } from "react-hook-form";
-import { PrimaryBtn } from "../Button/Button";
+import { PrimaryBtn, SecondaryBtn } from "../Button/Button";
 import styles from "./CreateJobs.module.scss";
 import { useUploadJobsMutation } from "../../redux/slices/jobsApiSlice";
-import type { FormDetails } from "./CreateJobs.types";
+import type { CreateJobsProps, FormDetails } from "./CreateJobs.types";
 
-const CreateJobs = () => {
+const CreateJobs = ({ dispatchFn }: CreateJobsProps) => {
     const { register, handleSubmit} = useForm<FormDetails>();
-
     const [ uploadJobsService ] = useUploadJobsMutation();
-
 
     const handleFormUpload = async(data:FormDetails) => {
         const response = await uploadJobsService(data).unwrap()
         console.log(response)
     }
 
-    
+
   return (
     <div className={styles.CreateJobs}>
-        <form onSubmit={handleSubmit(handleFormUpload)}>
-            <input type="text" {...register("category")} id="" placeholder="category"/>
-            <input type="text" {...register("description")} id="" placeholder="Description"/>
-            <select {...register("urgency")} id="">
+        <form className={styles.CreateJobsForm} onSubmit={handleSubmit(handleFormUpload)}>
+            <input className={styles.JobsInput} type="text" {...register("description")} id="" placeholder="Description"/>
+            <select className={styles.JobsInput} {...register("urgency")} id="">
                 <option value="LOW">Low</option>
-                <option value="HIGH"></option>
-                <option value="MEDIUM"></option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
             </select>
-            <PrimaryBtn>Upload</PrimaryBtn>
+            <input type="file" name="" id="" />
+            <div className={styles.BtnContainer}>
+                <PrimaryBtn onClick={()=>{
+                    dispatchFn({type:"setFormClose"})
+                }}>Upload</PrimaryBtn>
+                <SecondaryBtn onClick={()=>{
+                    dispatchFn({type:"setFormClose"})
+                }}>Cancel</SecondaryBtn>
+            </div>
         </form>
     </div>
   )
 }
 
-export default CreateJobs
+export default CreateJobs;
