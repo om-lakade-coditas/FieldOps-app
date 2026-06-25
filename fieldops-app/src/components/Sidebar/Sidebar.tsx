@@ -1,11 +1,18 @@
+import { useDispatch } from "react-redux";
 import styles from "./Sidebar.module.scss";
 import type { SidebarProps } from "./Sidebar.types";
+import { sidebar } from "../../redux/slices/sidebarSlice";
 
 const Sidebar = ({ children, ...props }:SidebarProps) => {
+
+  const dispatch = useDispatch();
+
   return (
     <div {...props} className={styles.Sidebar}>
         <div className={styles.CollapseSidebarContainer}>
-          <span className={styles.CollapseSidebarBtn}>X</span>
+          <span onClick={()=>{
+            dispatch(sidebar.actions.closeSidebar())
+          }} className={styles.CollapseSidebarBtn}>X</span>
         </div>
         <div className={styles.SidebarOptionContainer}>
           <h3 className={styles.SidebarOption}>Problems</h3>

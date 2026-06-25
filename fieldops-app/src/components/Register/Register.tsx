@@ -3,7 +3,7 @@ import { PrimaryBtn } from "../Button/Button"
 import styles from "./Register.module.scss"
 import type { RegisterData } from "./Register.types";
 import { useRegisterMutation } from "../../redux/slices/authApiSlice";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { loginRegister } from "../../redux/slices/loginRegisterSlice";
 
@@ -80,7 +80,6 @@ const Register = () => {
             <div className={styles.BtnContainer}>
                 <PrimaryBtn type="submit" className={styles.RegisterBtn}>Register</PrimaryBtn>
             </div>
-            <ToastContainer position="top-center"/>
         </form>
     </div>
   )

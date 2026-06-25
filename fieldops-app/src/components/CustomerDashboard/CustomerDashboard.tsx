@@ -5,7 +5,7 @@ const CustomerDashboard = () => {
   
   return (
     <div className={styles.CustomerDashboard}>
-      
+      CUstomer
     </div>
   )
 }

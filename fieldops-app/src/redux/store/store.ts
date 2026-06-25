@@ -4,13 +4,15 @@ import loginRegisterReducer from "../slices/loginRegisterSlice";
 import { useDispatch, useSelector, type TypedUseSelectorHook } from "react-redux";
 import ValidationInfoReducer from "../slices/ValidationInfoSlice";
 import authUserReducer from "../slices/authUserSlice";
+import sidebarSliceReducer from "../slices/sidebarSlice";
 
 export const store = configureStore({
     reducer: {
         [apiSlice.reducerPath]: apiSlice.reducer,
         loginRegister : loginRegisterReducer,
         ValidationInfo : ValidationInfoReducer,
-        userInfo: authUserReducer
+        userInfo: authUserReducer,
+        sidebar: sidebarSliceReducer
     },
     middleware: (getMiddleware) => 
         getMiddleware().concat(apiSlice.middleware),

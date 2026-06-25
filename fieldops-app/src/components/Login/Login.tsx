@@ -5,7 +5,7 @@ import type { JwtPayload, UserDetails } from "./Login.types";
 import { useLoginMutation } from "../../redux/slices/authApiSlice";
 import { useAppDispatch, useTypedSelector } from "../../redux/store/store";
 import { loginRegister } from "../../redux/slices/loginRegisterSlice";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
 import { authUser } from "../../redux/slices/authUserSlice";
@@ -29,7 +29,7 @@ const Login = () => {
                 if(role==="CUSTOMER"){
                     dispatch(authUser.actions.setRoleAsCustomer())
                     setTimeout(()=>{
-                        navigate("/Dashboard/Home")
+                        navigate("/Dashboard/")
                     },3000)
                 }
                 else if(role==="TECHNICIAN"){
@@ -69,7 +69,6 @@ const Login = () => {
             <div className={styles.BtnContainer}>
                 <PrimaryBtn className={styles.LoginBtn}>Login</PrimaryBtn>
             </div>
-            <ToastContainer position="top-center"/>
         </form>
     </div>
   )

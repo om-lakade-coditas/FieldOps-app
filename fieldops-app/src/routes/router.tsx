@@ -3,8 +3,8 @@ import Layout from "../components/Layout/Layout";
 import LandingScreen from "../components/LandingScreen/LandingScreen";
 import CustomerDashboard from "../components/CustomerDashboard/CustomerDashboard";
 import type React from "react";
-import TechnicianDashboard from "../pages/TechnicianDashboard/TechnicianDashboard";
-import DispatcherDashboard from "../pages/DispatcherDashboard/DispatcherDashboard";
+import TechnicianDashboard from "../components/TechnicianDashboard/TechnicianDashboard";
+import DispatcherDashboard from "../components/DispatcherDashboard/DispatcherDashboard";
 import Dashboard from "../pages/Dashboard/Dashboard";
 
 
@@ -24,19 +24,19 @@ export const router = createBrowserRouter([
             },
             {
                 Component: Dashboard,
-                path: "/Dashboard",
+                path: "/dashboard",
                 children: [
                 {
                     Component: CustomerDashboard,
-                    path: "Home"
+                    path: "/dashboard/"
                 },
                 {
                     Component: TechnicianDashboard,
-                    path: "Technician"
+                    path: "technician"
                 },
                 {
                     Component: DispatcherDashboard,
-                    path: "Dispatcher"
+                    path: "dispatcher"
                 }
             ]
             }
