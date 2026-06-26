@@ -1,5 +1,5 @@
   import styles from "./Dashboard.module.scss";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "../../components/UI-Components/Sidebar/Sidebar";
 import { Outlet } from "react-router";
 import { useTypedSelector } from "../../redux/store/store";
 import { useDispatch } from "react-redux";
