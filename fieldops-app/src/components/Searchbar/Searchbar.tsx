@@ -6,7 +6,7 @@ const Searchbar = () => {
     <div className={styles.Searchbar}>
         <div className={styles.SearchbarContainer}>
           <input className={styles.SearchbarInput} type="text" name="" id="" />
-          <PrimaryBtn>🔍</PrimaryBtn>
+          <PrimaryBtn className={styles.SearchBtn}>🔍</PrimaryBtn>
         </div>
     </div>
   )

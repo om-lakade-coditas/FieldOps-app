@@ -1,4 +1,16 @@
+@use "../../../styles/mixin" as *;
+
 .SearchbarInput {
     padding: 0.4rem 1rem;
     min-width: 70%;
+}
+
+
+.SearchbarContainer {
+    @include FlexBox;
+    gap: 1rem;
+    min-width: 50%;
+}
+.SearchBtn {
+    padding: 0.4rem 0.5rem;
 }

@@ -49,13 +49,17 @@ const CustomerDashboard = () => {
         </Filter>
       </div>
       {state.isFormOpen ? <CreateJobs dispatchFn={dispatch}/>: ""}
-      <div className={styles.ProblemsBoxContainer}>
-        <h2>Your Jobs </h2>
-        <div className={styles.ProblemsBox}>
-          {jobs?.map((job:{description:string },idx: number)=>{
-            return <li className={styles.Job} key={idx}>{job.description}</li>
-          })}
-        </div>
+      <div className={styles.JobsBoxContainer}>
+          <h3>Your Jobs:</h3>
+          <ul className={styles.JobsBox}>
+            {jobs?.map((job:{description:string },idx: number)=>{
+              return <li className={styles.Job} key={idx}>
+                {job.description}
+                
+                </li>
+            })}
+          </ul>
+      
       </div>
     </div>
   )
