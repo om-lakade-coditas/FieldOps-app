@@ -1,0 +1,22 @@
+@use "../../../styles/variables" as *;
+
+.Dashboard {
+    display: grid;
+    grid-template-columns: auto 1fr; 
+    height: 100%;  
+}
+
+.SidebarIcon {
+    font-size: 2rem;
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    border-radius: $border-radius;
+    &:hover {
+        background-color: rgba(128, 128, 128, 0.39);
+    }
+}
+
+.SidebarContainer {
+    padding: 1rem;
+    position: absolute;
+}

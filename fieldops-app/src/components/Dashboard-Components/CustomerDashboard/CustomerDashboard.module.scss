@@ -1,0 +1,58 @@
+@use "../../../../styles/mixin" as *;
+@use "../../../../styles/variables" as *;
+
+.CustomerDashboard {
+    display: grid;
+    min-height: 100%;
+    grid-template-rows: 1fr 2fr;
+}
+
+
+.JobsBoxContainer {
+    @include FlexBox;
+    justify-content: start;
+    flex-direction: column;
+    background-color: rgb(189, 189, 189);
+    border-radius: 10px;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.JobsBox {
+    overflow: hidden;
+    @include FlexBox;
+    min-width: 100%;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.CreateEnquiryBtn {
+    padding: 0.7rem 1.5rem;
+}
+
+.Job {
+    @include FlexBox;
+    justify-content: space-between;
+    background-color: white;
+    min-width: 100%;
+    padding: 0.8rem;
+    border: thin solid gray;
+    cursor: pointer;
+    list-style: none;
+    border-radius: $border-radius;
+    &:hover {
+        border: none;
+        box-shadow: 2px 2px 15px rgba(128, 128, 128, 0.781);
+    }
+}
+
+.Header {
+    @include FlexBox;
+    justify-content: space-evenly;
+    min-width: 100%;
+    padding: 1rem;
+}
+
+.COMPLETED {
+    color: green;
+}

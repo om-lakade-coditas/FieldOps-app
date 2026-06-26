@@ -1,0 +1,54 @@
+@use "../../../../styles/mixin" as *;
+@use "../../../../styles/variables" as *;
+
+.Sidebar {
+    border: thin solid transparent;
+    border-right-color: rgba(0, 0, 0, 0.562);
+    min-width: 20vw;
+    gap: 1rem;
+    padding: 1rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100%;
+}
+
+.SidebarOptionContainer {
+    @include FlexBox;
+    flex-direction: column;
+    justify-content: start;
+    gap: 1rem;    
+}
+
+.SidebarOption {
+    background-color: rgba(128, 128, 128, 0.233);
+    padding: 0.3rem;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 100%;
+    cursor: pointer;
+    &:hover {
+        background-color: rgba(128, 128, 128, 0.589);
+    }
+}
+
+
+.CollapseSidebarContainer {
+    display: flex;
+    justify-content: start;
+    min-width: 100%;
+    padding: 1rem;
+}
+
+.CollapseSidebarBtn {
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.24);
+    &:hover {
+        background-color: rgba(128, 128, 128, 0.589);
+
+    }
+    position: relative;
+    top: -55%;
+    left: -10%;
+    border-radius: 5px;
+}
