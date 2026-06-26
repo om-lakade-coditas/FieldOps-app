@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, useNavigate } from "react-router";
 import Layout from "../components/UI-Components/Layout/Layout";
 import LandingScreen from "../components/UI-Components/LandingScreen/LandingScreen";
 import CustomerDashboard from "../components/Dashboard-Components/CustomerDashboard/CustomerDashboard";
@@ -10,11 +10,13 @@ import guards from "./guards";
 export type Predicate = () => Boolean;
 
 
-const canAccess = (component: ComponentType, guards: Predicate[], to: ComponentType = Dashboard ) => {    
+
+const canAccess = (component: ComponentType, guards: Predicate[], to: ComponentType = LandingScreen ) => {    
     if(!guards.every(guard => guard())){
-        return to;
+        return to
     }
     return component;
+
 }
 
 export const router = createBrowserRouter([

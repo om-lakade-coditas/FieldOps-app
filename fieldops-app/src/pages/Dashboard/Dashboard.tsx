@@ -1,4 +1,4 @@
-  import styles from "./Dashboard.module.scss";
+import styles from "./Dashboard.module.scss";
 import Sidebar from "../../components/UI-Components/Sidebar/Sidebar";
 import { Outlet } from "react-router";
 import { useTypedSelector } from "../../redux/store/store";
@@ -9,6 +9,7 @@ import { sidebar } from "../../redux/slices/sidebarSlice";
 const Dashboard = () => {
   const isSidebarOpen = useTypedSelector((state) => state.sidebar.isSidebarOpen)
   const dispatch = useDispatch();
+  console.log(isSidebarOpen)
 
   return (
     <div className={styles.Dashboard}>

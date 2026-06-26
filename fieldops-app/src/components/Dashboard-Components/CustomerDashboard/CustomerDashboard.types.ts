@@ -11,19 +11,19 @@ export type actionType = {
 export interface jobDetails {
         id: string,
         customerId: string,
-        "technicianId": null,
+        "technicianId": string,
         "category": string,
         "description": string,
         "urgency": string,
         "status": string,
-        "scheduledFor": null,
-        "completionSummary": null,
+        "scheduledFor": string,
+        "completionSummary": string,
         "createdAt": string,
         "updatedAt":string,
         "customer": {
-            "id": "cmqruvrsf000a3vrxebysls84",
-            "name": "Bruce Wayne",
-            "email": "bruce@gmail.com"
+            "id": string,
+            "name": string,
+            "email": string
         },
-        "technician": null
+        "technician": string
     }
