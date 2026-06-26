@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
 import { authUser } from "../../../redux/slices/authUserSlice";
 import ValidationInfo from "../ValidationInfo/ValidationInfo";
-
+import Cookies from "js-cookie"
 
 
 const Login = () => {
@@ -31,6 +31,9 @@ const Login = () => {
                 const { role } = jwtDecode(response.accessToken) as JwtPayload;
                 dispatch(authUser.actions.setRole({payload:{role}}))
                 localStorage.setItem("accessToken", JSON.stringify(token));
+                Cookies.set('cookie-token', token, {
+                    secure: true
+                })
                 switch(role){
                     case "CUSTOMER":
                         navigate("/Dashboard/")

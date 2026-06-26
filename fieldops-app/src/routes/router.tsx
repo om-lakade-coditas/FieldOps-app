@@ -1,4 +1,4 @@
-import { createBrowserRouter, useNavigate } from "react-router";
+import { createBrowserRouter } from "react-router";
 import Layout from "../components/UI-Components/Layout/Layout";
 import LandingScreen from "../components/UI-Components/LandingScreen/LandingScreen";
 import CustomerDashboard from "../components/Dashboard-Components/CustomerDashboard/CustomerDashboard";
